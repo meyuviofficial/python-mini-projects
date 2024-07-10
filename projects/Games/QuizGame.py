@@ -1,49 +1,50 @@
-print(" Welcome To My Quiz Game \n Interesting Game to Play")
-Player = input(" Do you want to play the game? \n" )
-if Player.lower() != 'yes':
-    print("Good Bye")
-    quit()  
+class QuizGame:
+    def __init__(self):
+        self.score = 0
+        self.questions = [
+            {
+                "question": "What is CPU stands for?",
+                "answer": "central processing unit",
+            },
+            {
+                "question": "What is GPU stands for?",
+                "answer": "graphical processing unit",
+            },
+            {"question": "What is RAM stands for?", "answer": "random access memory"},
+            {"question": "What is ROM stands for?", "answer": "read only memory"},
+            {
+                "question": "Mouse is an input device or output device?",
+                "answer": "input device",
+            },
+        ]
 
-name_player = input("Enter Your Name: ")
+    def start(self):
+        print
+        print("Welcome To My Quiz Game")
+        print("Interesting Game to Play")
+        print
 
-print("Let's Start the Game :) ",name_player)
+        player = input("Do you want to play the game? ")
+        if player.lower() != "yes":
+            print("Good Bye")
+            quit()
 
-score = 0
+        name_player = input("Enter Your Name: ")
+        print("Let's Start the Game :) ", name_player)
 
-answer = input(' What is CPU stands for? \n ')
-if answer.lower() == 'central processing unit':
-    print("Correct")
-    score += 1
-else:
-    print('Wrong')
- 
-answer = input(' What is GPU stands for? \n ')
-if answer.lower() == 'graphical processing unit':
-    print("Correct")
-    score += 1
-else:
-    print('Wrong')
+        for question in self.questions:
+            answer = input(question["question"] + "\n")
+            if answer.lower() == question["answer"]:
+                print("Correct")
+                self.score += 1
+            else:
+                print("Wrong")
 
-answer = input(' What is RAM stands for? \n ')
-if answer.lower() == 'random access memory':
-    print("Correct")
-    score += 1
-else:
-    print('Wrong')
+        print("You got the " + str(self.score) + " correct answers")
+        print("You got the " + str((self.score / 5) * 100) + " correct answers")
+        print("Good Bye")
 
-answer = input(' What is ROM stands for? \n ')
-if answer.lower() == 'read only memory':
-    print("Correct")
-    score += 1
-else:
-    print('Wrong')
 
-answer = input(' Mouse is an input device or output device? \n ')
-if answer.lower() == 'input device':
-    print("Correct")
-    score += 1
-else:
-    print('Wrong')
-    
-print("You got the " + str(score)+ " correct answers")
-print("You got the " + str((score/5) *100)+ " correct answers")
+if __name__ == "__main__":
+    quiz = QuizGame()
+    quiz.start()
